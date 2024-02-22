@@ -91,7 +91,7 @@ def crear_usuario():
     try:
         data = request.get_json()
 
-        # Procesa los datos manualmente en lugar de usar Flask-WTF
+        
         id = data.get('id')
         cedula = data.get('cedula')
         nombre = data.get('nombre')
@@ -120,7 +120,6 @@ def actualizar_usuario(id):
         if admin_token == ADMIN_SECRET_KEY:
             data = request.get_json()
 
-            # Obtén los datos del formulario directamente
             usuario = data.get('usuario')
             contrasenia = data.get('contrasenia')
             correo = data.get('correo')
@@ -130,13 +129,13 @@ def actualizar_usuario(id):
             telefono = data.get('telefono')
             direccion = data.get('direccion')
 
-            # Verifica si se proporcionó una nueva contraseña
+          
             if contrasenia:
                 contrasenia_cifrada = argon2.hash(contrasenia)
                 cursor.execute("UPDATE usuarios SET usuario=%s, contrasenia=%s, correo=%s, nombre=%s, apellido=%s, rol=%s, telefono=%s, direccion=%s WHERE id=%s",
                                (usuario, contrasenia_cifrada, correo, nombre, apellido, rol, telefono, direccion, id))
             else:
-                # Si no se proporciona una nueva contraseña, actualiza los demás campos sin cambiar la contraseña
+              
                 cursor.execute("UPDATE usuarios SET usuario=%s, correo=%s, nombre=%s, apellido=%s, rol=%s, telefono=%s, direccion=%s WHERE id=%s",
                                (usuario, correo, nombre, apellido, rol, telefono, direccion, id))
 
