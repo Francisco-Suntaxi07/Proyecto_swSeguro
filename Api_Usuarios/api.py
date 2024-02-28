@@ -4,20 +4,23 @@ from passlib.hash import argon2
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length, Regexp
+import pyodbc
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mi_secreto_super_seguro'
 
 # Configuración de la base de datos
 db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    'database': 'seguro'
+    'Server': 'DESKTOP-GAMNA9H\SQLEXPRESS',
+    'Database': 'Proyectos_7',
+    'UID': 'sa',
+    'PWD': 'admin1',
+    'Port': '1433',
+    'Driver': '{ODBC Driver 17 for SQL Server}'  # Asegúrate de tener el controlador ODBC adecuado instalado
 }
 
 # Conexión a la base de datos
-conn = mysql.connector.connect(**db_config)
+conn = pyodbc.connect(**db_config)
 cursor = conn.cursor()
 
 class CrearUsuarioForm(FlaskForm):
