@@ -46,6 +46,6 @@ CREATE TABLE usuarios (
 );
 
 INSERT INTO usuarios (id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion)
-VALUES ('1', '1234567890', 'Juan', 'Pérez', 'Administrador', 'contraseña123', 'juanperez', '555-1234', 'Calle Principal #123');
+VALUES ('l00', '1234567890', 'Juan', 'Pérez', 'Administrador', 'contraseña123', 'juanperez', '555-1234', 'Calle Principal #123');
 
 SELECT * FROM usuarios
