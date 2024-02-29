@@ -18,7 +18,6 @@ export class HomeComponent {
     const dialogRef = this.dialog.open(SignInComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 
