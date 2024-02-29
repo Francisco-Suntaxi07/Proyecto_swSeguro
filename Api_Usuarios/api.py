@@ -65,7 +65,8 @@ ADMIN_SECRET_KEY = "secreto_admin"
 def obtener_usuario_por_id(id):
     try:
         # Busca el usuario por ID en la base de datos
-        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=%s", (id,))
+        #cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=%s", (id,))
+        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=?", (id,))
         usuario = cursor.fetchone()
 
         if usuario:
