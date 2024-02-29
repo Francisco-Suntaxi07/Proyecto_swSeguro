@@ -61,7 +61,33 @@ def obtener_usuarios():
         return jsonify({'error': str(e)}), 500
 
 ADMIN_SECRET_KEY = "secreto_admin"
+@app.route('/usuarios/<id>', methods=['GET'])
+def obtener_usuario_por_id(id):
+    try:
+        # Busca el usuario por ID en la base de datos
+        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=%s", (id,))
+        usuario = cursor.fetchone()
 
+        if usuario:
+            # Convierte el resultado a un formato JSON
+            usuario_dict = {
+                'id': usuario[0],
+                'cedula': usuario[1],
+                'nombre': usuario[2],
+                'apellido': usuario[3],
+                'rol': usuario[4],
+                'contrasenia': usuario[5],
+                'usuario': usuario[6],
+                'telefono': usuario[7],
+                'direccion': usuario[8]
+            }
+
+            return jsonify({'usuario': usuario_dict}), 200
+        else:
+            return jsonify({'mensaje': 'Usuario no encontrado'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 @app.route('/usuarios/<id>', methods=['DELETE'])
 def eliminar_usuario(id):
     try:
