@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     LoginRoutingModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class LoginModule { }
