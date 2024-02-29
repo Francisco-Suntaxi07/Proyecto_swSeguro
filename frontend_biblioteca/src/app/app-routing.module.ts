@@ -5,6 +5,8 @@ import { LoginModule } from './login/login.module';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  
   { path: '**', loadComponent: () => import('./errors/errors.component').then(comp => comp.ErrorsComponent) }
 ];
 
