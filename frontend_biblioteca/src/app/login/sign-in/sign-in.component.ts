@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +10,16 @@ import { Router } from '@angular/router';
 export class SignInComponent {
 
   constructor(
+    public dialogRef: MatDialogRef<SignInComponent>,
     private router: Router
   ){}
 
   signIn(user: string): void {
     this.router.navigate([user]);
+  }
+
+  closeSignIn(): void {
+    this.dialogRef.close();
   }
 
 }

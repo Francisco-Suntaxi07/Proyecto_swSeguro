@@ -1,4 +1,19 @@
-<p>home works!</p>
-<button type="button" (click)="signIn('admin')" class="btn btn-outline-primary">Iniciar Sesión admin</button>
-<button type="button" (click)="signIn('administrador')" class="btn btn-outline-primary">Iniciar Sesión administrador</button>
-<button type="button" (click)="signIn('estudiante')" class="btn btn-outline-primary">Iniciar Sesión estudiante</button>
+<h1 mat-dialog-title>Registrate</h1>
+<div mat-dialog-content>
+    <p>What's your favorite animal?</p>
+    <mat-form-field>
+        <mat-label>Favorite Animal</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <div>
+        <button type="button" (click)="signIn('admin')" class="btn btn-outline-primary">Iniciar Sesión admin</button>
+        <button type="button" (click)="signIn('administrador')" class="btn btn-outline-primary">Iniciar Sesión
+            administrador</button>
+        <button type="button" (click)="signIn('estudiante')" class="btn btn-outline-primary">Iniciar Sesión
+            estudiante</button>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="closeSignIn()">No Thanks</button>
+</div>
