@@ -8,12 +8,6 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent {
 
-  constructor(
-    private router: Router
-  ){}
-
-  signIn(user: string): void {
-    this.router.navigate([user]);
-  }
+  
 
 }
