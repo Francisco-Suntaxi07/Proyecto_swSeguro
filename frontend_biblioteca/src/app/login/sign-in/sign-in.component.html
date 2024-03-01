@@ -1,37 +1,48 @@
-<h1 mat-dialog-title>Inicio de Sesión</h1>
+<div class="login_bg">
+    <h1 mat-dialog-title class="title">Inicio de Sesión</h1>
+    <button class="close_btn" mat-stroked-button (click)="closeSignIn()">X</button>
+</div>
+
 <div mat-dialog-content>
     <form [formGroup]="formLogin">
         <fieldset>
             <div class="row">
                 <div class="col">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>ID</mat-label>
                         <input matInput formControlName="idUser" name="idUser">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field>
                         <mat-label>Contraseña</mat-label>
                         <input matInput [type]="_hide ? 'password' : 'text'" formControlName="password" name="password">
-                        <button mat-icon-button matSuffix (click)="_hide = !_hide" [attr.aria-pressed]="_hide">
-                            <mat-icon>{{_hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
                     </mat-form-field>
                 </div>
             </div>
+
             <div class="row">
-                <button type="button" (click)="signIn('admin')" class="btn btn-outline-primary">Iniciar Sesión
-                    admin</button>
-                <button type="button" (click)="signIn('administrador')" class="btn btn-outline-primary">Iniciar Sesión
-                    administrador</button>
-                <button type="button" (click)="signIn('estudiante')" class="btn btn-outline-primary">Iniciar Sesión
-                    estudiante</button>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-outline-primary">Iniciar Único </button>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" (click)="signIn('admin')" class="btn btn-outline-primary">Iniciar Sesión admin</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" (click)="signIn('administrador')" class="btn btn-outline-primary">Iniciar Sesión administrador</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" (click)="signIn('estudiante')" class="btn btn-outline-primary">Iniciar Sesión estudiante</button>
+                </div>
+            </div>
+         
         </fieldset>
     </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-stroked-button (click)="closeSignIn()">Cerrar</button>
 </div>
