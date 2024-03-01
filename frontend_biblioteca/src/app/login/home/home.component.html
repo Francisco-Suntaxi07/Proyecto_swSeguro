@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <a class="text-white pr-3" href="">Preguntas Frecuentes</a>
-                    <span class="text-white">|</span>
+                    <span class="text-white"> | </span>
                     <a class="text-white px-3" href="">Ayuda</a>
-                    <span class="text-white">|</span>
+                    <span class="text-white"> | </span>
                     <a class="text-white pl-3" href="">Soporte</a>
                 </div>
-                <div class="col-md-6  text-lg-right">
+                <div class="col-md-6  text_derecha">
                     <a class="text-white px-3" href="">
                         <i class="fab fa-facebook-f"></i>
                     </a>
@@ -59,19 +59,17 @@
             </nav>
         </div>
     </div>
-    <div class="container-fluid p-0 mb-5 pb-5">
+    <div class="container-fluid p-0 ">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <img src="assets/bg_libro1.png" alt="Image" style="width: 100%;">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h4 >Convierte el conocimiento en libertad: digitalizando historias, conectando mentes.</h4>
                         <h1 >BIBLIOTECA ALEJANDRO SEGOVIA</h1>
-                        <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Learn More</a>
+                        <button class="btn btn-primary py-md-3 px-md-5 mt-2" (click)="openSignIn()">Pick one</button>
                     </div>
                 </div>
         </div>
     </div>
 </body>
-
 </html>
-<button (click)="openSignIn()">Pick one</button>
