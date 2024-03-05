@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookModel } from 'src/app/models/bookModel';
 import { BooksService } from 'src/app/services/books.service';
 
@@ -7,9 +7,9 @@ import { BooksService } from 'src/app/services/books.service';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.scss']
 })
-export class BooksComponent {
+export class BooksComponent implements OnInit{
   
-  /*listBooks: BookModel[] = [];
+  listBooks: BookModel[] = [];
 
   constructor(
     private booksService: BooksService
@@ -22,8 +22,8 @@ export class BooksComponent {
   loadBooks(){
     this.booksService.findAll().subscribe( data => {
       this.listBooks = data;
+      console.log(this.listBooks);
     });
-    console.log("HOLA MUNSO")
-  }*/
+  }
 
 }

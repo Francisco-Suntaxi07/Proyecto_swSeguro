@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookModel } from '../models/bookModel';
@@ -13,7 +13,10 @@ export class BooksService {
   constructor(private http: HttpClient) { }
 
   public findAll(): Observable<BookModel[]>{
-    return this.http.get<BookModel[]>(`${this.urlEndPoint}/all`);
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('admin:admin')
+    });
+    return this.http.get<BookModel[]>(`${this.urlEndPoint}/all`, {headers});
   }
 
   findById(id: string): Observable<BookModel> {
