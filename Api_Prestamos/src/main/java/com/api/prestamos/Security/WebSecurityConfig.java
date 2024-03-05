@@ -19,7 +19,8 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withUsername("admin")
+        UserDetails user = User.builder()
+                .username("admin")
                 .password("admin")
                 .roles("admin")
                 .build();
