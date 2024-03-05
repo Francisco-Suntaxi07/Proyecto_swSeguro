@@ -6,9 +6,9 @@ import { StudentLayoutComponent } from './student/student-layout/student-layout.
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'admin', component: AdminLayoutComponent, loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'administrador', component: AdministratorLayoutComponent, loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule) },
-  { path: 'estudiante', component: StudentLayoutComponent, loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'administrador', loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule) },
+  { path: 'estudiante', loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
   { path: '**', loadComponent: () => import('./errors/errors.component').then(comp => comp.ErrorsComponent) }
 ];
 
