@@ -22,8 +22,8 @@ public class BookRestController {
     @Autowired
     private IBookService bookService;
 
-
     @GetMapping("/books/all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<BookEntity>> findAllBooks (){
         return ResponseEntity.ok().body(bookService.findAllBooks());
     }
