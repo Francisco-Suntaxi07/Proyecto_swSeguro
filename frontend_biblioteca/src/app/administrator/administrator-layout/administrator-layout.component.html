@@ -76,9 +76,11 @@
                 <div>
                     <ng-container *ngIf="displayBooks">
                         <button (click)="displayBooks = false">Cerrar tabla</button>
-                        <app-books></app-books>
+                        <div class="books-container">
+                            <app-books></app-books>
+                        </div>
                     </ng-container>
-                </div>          
+                </div>    
             </div>
         </div>
     </div>
