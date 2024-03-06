@@ -132,3 +132,9 @@
 .elementos_sep button {
     margin-right: 10px; 
 }
+
+.books-container {
+  max-height: 200px; 
+  overflow-y: auto;
+}
+
