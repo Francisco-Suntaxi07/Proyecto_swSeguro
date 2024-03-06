@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BookModel } from 'src/app/models/bookModel';
 import { BooksService } from 'src/app/services/books.service';
+import { BooksFormComponent } from './books-form/books-form.component';
+import { BooksWarningComponent } from './books-warning/books-warning.component';
 
 @Component({
   selector: 'app-books',
@@ -10,11 +13,12 @@ import { BooksService } from 'src/app/services/books.service';
 export class BooksComponent implements OnInit{
   
   private _listBooks: BookModel[] = [];
-  displayedColumns: string[] = ['id', 'title', 'author', 'genre', 'publisher', 'publicationDate', 'numPages', 'quantity', 'price'];
+  displayedColumns: string[] = ['id', 'title', 'author', 'genre', 'publisher', 'publicationDate', 'numPages', 'quantity', 'price', 'actions'];
   dataSource: BookModel[] = [];
 
   constructor(
-    private booksService: BooksService
+    public dialog: MatDialog,
+    private booksService: BooksService,
   ){}
 
   ngOnInit(): void {
@@ -25,6 +29,22 @@ export class BooksComponent implements OnInit{
     this.booksService.findAll().subscribe( data => {
       this._listBooks = data;
       this.dataSource = this._listBooks
+    });
+  }
+
+  openEdit(book: BookModel): void {
+    const dialogRef = this.dialog.open(BooksFormComponent, {
+      data: book
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDelete(book: BookModel): void {
+    const dialogRef = this.dialog.open(BooksWarningComponent, {
+      data: book 
+    });
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

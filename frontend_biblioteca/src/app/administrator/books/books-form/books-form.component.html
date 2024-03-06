@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Editar Libro</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formBook">
+        <fieldset>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="idUser" name="idUser">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput formControlName="password" name="password">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-outline-primary">Iniciar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
