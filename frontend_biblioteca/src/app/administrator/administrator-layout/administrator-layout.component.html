@@ -1,38 +1,41 @@
 <app-header></app-header>
-    <div class="container-fluid p-0 ">
-        <div id="header-carousel" class="carousel slide" data-ride="carousel">
-            <img src="assets/books.jpeg" alt="Image" style="width: 100%;">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                <div class="p-3" style="max-width: 900px;">
-                    <h1>BIENVENIDO XPERSONA </h1>
-                    <h4>¿Qué deseas realizar hoy?</h4>
-                    <div >
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2">REGISTRAR LIBROS</button>
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2" (click)="goToBooks()">VER
-                            LIBROS</button>
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2">GESTIÓN PRESTAMOS</button>
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2" (click)="goToLoans()">VER
-                            PRESTAMOS</button>
+<div class="container-fluid p-0 ">
+    <div id="header-carousel" class="carousel slide" data-ride="carousel">
+        <img src="assets/books.jpeg" alt="Image" style="width: 100%;">
+        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+            <div class="p-3" style="max-width: 900px;">
+                <h1>BIENVENIDO XPERSONA </h1>
+                <h4>¿Qué deseas realizar hoy?</h4>
+                <div>
+                    <button class="btn btn-primary py-md-3 px-md-4 mt-2">REGISTRAR LIBROS</button>
+                    <span class="spacer"></span>
+                    <button class="btn btn-primary py-md-3 px-md-4 mt-2" (click)="goToBooks()">VER
+                        LIBROS</button>
+                    <span class="spacer"></span>
+                    <button class="btn btn-primary py-md-3 px-md-4 mt-2">GESTIÓN PRESTAMOS</button>
+                    <span class="spacer"></span>
+                    <button class="btn btn-primary py-md-3 px-md-4 mt-2" (click)="goToLoans()">VER
+                        PRESTAMOS</button>
+                </div>
+            </div>
+            <div>
+                <ng-container *ngIf="displayLoans">
+                    <div class="container-menus">
+                        <app-loans></app-loans>
                     </div>
-                </div>
-                <div>
-                    <ng-container *ngIf="displayLoans">
-                        <div class="container-menus">
-                            <app-loans></app-loans>
-                        </div>
-                        <br>
-                        <button class="btn-cerrar" (click)="displayLoans = false">Cerrar tabla</button>
-                    </ng-container>
-                </div>
-                <div>
-                    <ng-container *ngIf="displayBooks">
-                        <div class="container-menus">
-                            <app-books></app-books>
-                        </div>
-                        <br>
-                        <button class="btn-cerrar" (click)="displayBooks = false">Cerrar tabla</button>
-                    </ng-container>
-                </div>
+                    <br>
+                    <button class="btn-cerrar" (click)="displayLoans = false">Cerrar tabla</button>
+                </ng-container>
+            </div>
+            <div>
+                <ng-container *ngIf="displayBooks">
+                    <div class="container-menus">
+                        <app-books></app-books>
+                    </div>
+                    <br>
+                    <button class="btn-cerrar" (click)="displayBooks = false">Cerrar tabla</button>
+                </ng-container>
             </div>
         </div>
     </div>
+</div>
