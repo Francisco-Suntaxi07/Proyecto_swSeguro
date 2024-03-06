@@ -6,12 +6,14 @@ import { AdministratorRoutingModule } from './administrator-routing.module';
 import { AdministratorLayoutComponent } from './administrator-layout/administrator-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { BooksComponent } from './books/books.component';
+import { LoansComponent } from './loans/loans.component';
 
 
 @NgModule({
   declarations: [
     AdministratorLayoutComponent,
-    BooksComponent
+    BooksComponent,
+    LoansComponent
   ],
   imports: [
     CommonModule,
