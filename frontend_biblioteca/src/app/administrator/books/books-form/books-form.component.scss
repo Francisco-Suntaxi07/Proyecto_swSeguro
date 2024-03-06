@@ -1,0 +1,25 @@
+.login_bg {
+    position: relative;
+    background-color: #D1B280;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.btn {
+    border-radius: 90px;
+    background-color: #D1B280;
+    color: #ffffff;
+    border: none;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #f3c986; 
+    border: none;
+}
