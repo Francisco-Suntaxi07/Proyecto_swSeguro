@@ -64,15 +64,21 @@
                         <button class="btn btn-primary py-md-3 px-md-5 mt-2">REGISTRAR LIBROS</button>
                         <button class="btn btn-primary py-md-3 px-md-5 mt-2" (click)="goToBooks()" >VER LISTA LIBROS</button>
                         <button class="btn btn-primary py-md-3 px-md-5 mt-2">GESTIÓN PRESTAMOS</button>
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2">VER LISTA PRESTAMOS</button>
+                        <button class="btn btn-primary py-md-3 px-md-5 mt-2"(click)="goToLoans()" >VER LISTA PRESTAMOS</button>
                     </div>
+                </div>
+                <div>
+                    <ng-container *ngIf="displayLoans">
+                        <button (click)="displayLoans = false">Cerrar tabla</button>
+                        <app-loans></app-loans>
+                    </ng-container>
                 </div>
                 <div>
                     <ng-container *ngIf="displayBooks">
                         <button (click)="displayBooks = false">Cerrar tabla</button>
                         <app-books></app-books>
                     </ng-container>
-                </div>
+                </div>          
             </div>
         </div>
     </div>
