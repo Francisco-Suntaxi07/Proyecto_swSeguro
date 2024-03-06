@@ -35,6 +35,9 @@ export class BooksWarningComponent {
         this.snackBar.open("✅ El libro se elimino correctamente", "Cerrar", {
           duration: 2000
         });
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
       },
       error: (error) => {
         this.snackBar.open("❌ Ocurrió un error al eliminar el libro", "Cerrar", {
@@ -43,7 +46,6 @@ export class BooksWarningComponent {
         console.log(error);
       }
     });
-    this.dialogRef.close();
   }
 
   public get book(): BookModel {
