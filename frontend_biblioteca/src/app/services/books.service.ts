@@ -33,7 +33,7 @@ export class BooksService {
     return this.http.post<any>(`${this.urlEndPoint}/save`, book, { headers });
   }
 
-  delete(id: string): Observable<any> {
+  delete(id?: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin:admin')
     });
