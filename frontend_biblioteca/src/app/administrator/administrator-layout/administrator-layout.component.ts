@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./administrator-layout.component.scss']
 })
 export class AdministratorLayoutComponent{
+
+  displayBooks: boolean = false;
+
+  goToBooks() {
+      this.displayBooks = true;
+  }
 }
 
