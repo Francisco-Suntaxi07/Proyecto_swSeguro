@@ -12,23 +12,32 @@ export class BooksService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable<BookModel[]>{
+  public findAll(): Observable<BookModel[]> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin:admin')
     });
-    return this.http.get<BookModel[]>(`${this.urlEndPoint}/all`, {headers});
+    return this.http.get<BookModel[]>(`${this.urlEndPoint}/all`, { headers });
   }
 
   findById(id: string): Observable<BookModel> {
-    return this.http.get<BookModel>(`${this.urlEndPoint}/${id}`);
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('admin:admin')
+    });
+    return this.http.get<BookModel>(`${this.urlEndPoint}/${id}`, { headers });
   }
 
   save(book: BookModel): Observable<any> {
-    return this.http.post<any>(`${this.urlEndPoint}/save`, book);
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('admin:admin')
+    });
+    return this.http.post<any>(`${this.urlEndPoint}/save`, book, { headers });
   }
 
   delete(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.urlEndPoint}/delete/${id}`);
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('admin:admin')
+    });
+    return this.http.delete<any>(`${this.urlEndPoint}/delete/${id}`, { headers });
   }
 
 }
