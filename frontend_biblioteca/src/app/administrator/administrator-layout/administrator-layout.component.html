@@ -73,14 +73,15 @@
                         <app-loans></app-loans>
                     </ng-container>
                 </div>
-                <div>
+                <div class="contenedor-libro">
                     <ng-container *ngIf="displayBooks">
-                        <button (click)="displayBooks = false">Cerrar tabla</button>
                         <div class="books-container">
                             <app-books></app-books>
                         </div>
+                        <br>
+                        <button class="btn-libro" (click)="displayBooks = false">Cerrar tabla</button>
                     </ng-container>
-                </div>    
+                </div>
             </div>
         </div>
     </div>

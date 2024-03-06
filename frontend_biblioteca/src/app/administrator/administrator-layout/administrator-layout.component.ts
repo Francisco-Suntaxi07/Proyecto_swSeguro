@@ -12,10 +12,12 @@ export class AdministratorLayoutComponent {
 
   goToBooks() {
     this.displayBooks = true;
+    this.displayLoans = false;
   }
 
   goToLoans() {
     this.displayLoans = true;
+    this.displayBooks = false;
   }
 }
 
