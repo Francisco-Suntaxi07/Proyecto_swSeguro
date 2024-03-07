@@ -1,5 +1,5 @@
 <div class="login_bg">
-    <h1 mat-dialog-title class="title">Prestamo</h1>
+    <h1 mat-dialog-title class="title">PRESTAMO</h1>
 </div>
 <div mat-dialog-content>
     <form [formGroup]="formLoan">
@@ -7,49 +7,36 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
-                        <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id">
+                        <mat-label>ID_PRESTAMO</mat-label>
+                        <input matInput formControlName="id" name="id" maxlength="8" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>ID Libro</mat-label>
-                        <input matInput formControlName="bookId" name="bookId">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <mat-form-field appearance="outline">
-                        <mat-label>ID Estudiante</mat-label>
-                        <input matInput formControlName="customerId" name="customerId">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
+
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de Prestamo</mat-label>
-                        <input matInput formControlName="loanDate" name="loanDate" 
-                        [matDatepicker]="loanPicker" [min]="minDate" (dateChange)="updateMinReturnDate($event)">
+                        <input matInput formControlName="loanDate" name="loanDate" maxlength="12" [matDatepicker]="loanPicker"
+                            [min]="minDate" (dateChange)="updateMinReturnDate($event)" (keypress)="deshabilitarLetrasYSimbolos($event)">
                         <mat-datepicker-toggle matSuffix [for]="loanPicker"></mat-datepicker-toggle>
                         <mat-datepicker #loanPicker></mat-datepicker>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
-                        <mat-label>Fecha de Devolucion</mat-label>
-                        <input matInput formControlName="returnDate" name="returnDate" 
-                        [matDatepicker]="returnPicker" [min]="minDateReturn">
-                        <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
-                        <mat-datepicker #returnPicker></mat-datepicker>
+                        <mat-label>ID Libro</mat-label>
+                        <input matInput formControlName="bookId" name="bookId" maxlength="8" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
+
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>ID Estudiante</mat-label>
+                        <input matInput formControlName="customerId" name="customerId" maxlength="8" (keypress)="deshabilitarSimbolos($event)">
+                    </mat-form-field>
+                </div>
+
             </div>
+
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
@@ -57,23 +44,29 @@
                         <input matInput formControlName="price" name="price" type="number" step="0.01" min="0">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Devolucion</mat-label>
+                        <input matInput formControlName="returnDate" name="returnDate" [matDatepicker]="returnPicker"
+                            [min]="minDateReturn" maxlength="12" (keypress)="deshabilitarSimbolos($event)">
+                        <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #returnPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Multa</mat-label>
                         <input matInput formControlName="fine" name="fine" type="number" step="0.01" min="0">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Observaciones</mat-label>
-                        <textarea matInput formControlName="observations" name="observations"></textarea>
+                        <textarea matInput formControlName="observations" name="observations" maxlength="32" (keypress)="deshabilitarSimbolos($event)"></textarea>
                     </mat-form-field>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col text-center">
                     <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()"
