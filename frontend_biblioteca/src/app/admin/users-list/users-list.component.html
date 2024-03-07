@@ -2,14 +2,14 @@
   <form [formGroup]="formSearch" class="custom-form">
       <div class="form-group">
           <label for="id" class="custom-label">Buscar por ID:</label>
-          <input type="text" id="id" formControlName="id" class="custom-input">
+          <input type="text" id="id" formControlName="id" class="custom-input" maxlength="8"  (keypress)="deshabilitarSimbolos($event)">
       </div>
       <br>
       <div class="btn-find">
-        <button type="button" class="btn btn-primary custom-button" (click)="buscar()">Buscar</button>
+        <button type="button" class="btn btn-primary custom-button"  (click)="buscar()">Buscar</button>
       </div>
   </form>
-  <div *ngIf="usuarioEncontrado">
+  <div *ngIf="usuarioEncontrado"> 
       <table class="table custom-table">
           <thead>
               <tr>

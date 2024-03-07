@@ -89,6 +89,12 @@ export class UsersDeleteComponent {
     });
   }
   
+  deshabilitarSimbolos(event: KeyboardEvent) {
+    const charCode = event.which || event.keyCode;
+    const specialChars = [33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 95, 43, 61, 91, 93, 123, 125, 92, 124, 59, 58, 34, 39, 60, 62, 47, 63];    if (specialChars.includes(charCode) && charCode !== 38) {
+        event.preventDefault();
+    }
+}
 
   
 }

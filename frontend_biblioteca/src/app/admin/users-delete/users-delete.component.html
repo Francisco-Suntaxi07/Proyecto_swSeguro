@@ -10,7 +10,7 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id" required>
+                        <input matInput formControlName="id" name="id" required maxlength="8" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
                 <div class="col text-center">
