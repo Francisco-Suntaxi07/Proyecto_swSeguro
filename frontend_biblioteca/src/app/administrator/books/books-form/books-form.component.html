@@ -1,18 +1,18 @@
 <div class="login_bg">
-    <h1 mat-dialog-title class="title">EDITAR LIBRO</h1>
+    <h1 mat-dialog-title class="title">GESTIÓN LIBRO</h1>
 </div>
 <div mat-dialog-content>
     <form [formGroup]="formBook">
         <fieldset>
+
             <div class="row">
-                <div class="col" >
+                <div class="col">
                     <mat-form-field class="id-text" appearance="outline">
                         <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id" >
+                        <input matInput formControlName="id" name="id">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Titulo</mat-label>
@@ -25,6 +25,8 @@
                         <input matInput formControlName="author" name="author" maxlength="32">
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Genero</mat-label>
@@ -37,8 +39,6 @@
                         <input matInput formControlName="publisher" name="publisher" maxlength="24">
                     </mat-form-field>
                 </div>
-            </div>  
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de Publicacion</mat-label>
@@ -48,6 +48,8 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Numero de paginas</mat-label>
@@ -70,7 +72,8 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()" [disabled]="!isFormValid()">Guardar</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()"
+                        [disabled]="!isFormValid()">Guardar</button>
                     <span class="spacer"></span>
                     <button type="button" class="btn btn-outline-primary" (click)="closeBookForm()">Cerrar</button>
                 </div>
