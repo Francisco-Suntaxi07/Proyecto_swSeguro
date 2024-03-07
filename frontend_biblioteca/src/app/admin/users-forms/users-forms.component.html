@@ -16,13 +16,13 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Nombre</mat-label>
-                        <input matInput formControlName="nombre" name="nombre" pattern="[a-zA-Z ]*" maxlength="100" required>
+                        <input matInput formControlName="nombre" name="nombre" pattern="[a-zA-Z ]*" maxlength="32" required>
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Apellido</mat-label>
-                        <input matInput formControlName="apellido" name="apellido" pattern="[a-zA-Z ]*" maxlength="100" required>
+                        <input matInput formControlName="apellido" name="apellido" pattern="[a-zA-Z ]*" maxlength="32" required>
                     </mat-form-field>
                 </div>
             </div>
@@ -35,11 +35,15 @@
                     </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Rol</mat-label>
-                        <input matInput formControlName="rol" name="rol" required>
+                        <mat-select formControlName="rol" name="rol" required>
+                            <mat-option value="estudiante">Estudiante</mat-option>
+                            <mat-option value="administrador">Administrador</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
+                
             </div>
 
             <div class="row">

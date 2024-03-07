@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UsersDeleteComponent } from './users-delete/users-delete.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AdminLayoutComponent,
@@ -22,6 +24,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     UsersListComponent
   ],
   imports: [
+    MatSelectModule,
     CommonModule,
     AdminRoutingModule,
     SharedModule,

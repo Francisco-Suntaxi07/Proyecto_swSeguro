@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsersModel } from 'src/app/models/usersModel';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-users-forms',
