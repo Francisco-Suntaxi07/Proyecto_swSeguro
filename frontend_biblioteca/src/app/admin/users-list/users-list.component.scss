@@ -1,0 +1,39 @@
+.custom-form {
+    margin-bottom: 20px;
+}
+
+.custom-input {
+    width: calc(30% - 100px);
+    border: none;
+}
+
+.custom-label {
+    font-weight: bold;
+}
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th {
+    background-color: #000000;
+    color: white;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.custom-table tr:hover {
+    background-color: #ddd;
+}
+
+.btn-find {
+    text-align: center;
+}
+
+.custom-button {
+    margin: 0 auto;
+    display: block;
+}
