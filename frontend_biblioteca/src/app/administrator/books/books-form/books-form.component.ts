@@ -15,7 +15,6 @@ export class BooksFormComponent implements OnInit {
   private _book: BookModel = new BookModel;
   maxDate = new Date();
 
-
   private _formBook: FormGroup = this._formBuilder.group({
     id: ['', Validators.required],
     title: ['', Validators.required],
