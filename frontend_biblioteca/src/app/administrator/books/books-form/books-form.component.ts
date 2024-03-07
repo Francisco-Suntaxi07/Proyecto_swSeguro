@@ -17,15 +17,16 @@ export class BooksFormComponent implements OnInit {
 
   private _formBook: FormGroup = this._formBuilder.group({
     id: ['', Validators.required],
-    title: ['', Validators.required],
-    author: ['', Validators.required],
-    genre: ['', Validators.required],
-    publisher: ['', Validators.required],
+    title: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
+    author: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
+    genre: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
+    publisher: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
     publicationDate: [null, Validators.required],
-    numPages: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
+    numPages: [null, [Validators.required, Validators.pattern("^[1-9]*$")]],
     quantity: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
     price: [null, [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]]
   });
+  
 
   constructor(
     public dialogRef: MatDialogRef<BooksFormComponent>,
