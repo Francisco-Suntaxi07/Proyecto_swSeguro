@@ -1,28 +1,89 @@
 <div class="login_bg">
-    <h1 mat-dialog-title class="title" >Editar Libro</h1>
+    <h1 mat-dialog-title class="title">Editar Libro</h1>
 </div>
-
 <div mat-dialog-content>
     <form [formGroup]="formBook">
         <fieldset>
             <div class="row">
                 <div class="col">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>ID</mat-label>
-                        <input matInput formControlName="idUser" name="idUser">
-                    </mat-form-field>
-                </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput formControlName="password" name="password">
+                        <input matInput formControlName="id" name="id">
                     </mat-form-field>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Titulo</mat-label>
+                        <input matInput formControlName="title" name="title">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Autor</mat-label>
+                        <input matInput formControlName="author" name="author">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Genero</mat-label>
+                        <input matInput formControlName="genre" name="genre">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Editorial</mat-label>
+                        <input matInput formControlName="publisher" name="publisher">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Publicacion</mat-label>
+                        <input matInput formControlName="publicationDate" name="publicationDate"
+                            [matDatepicker]="picker" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Numero de paginas</mat-label>
+                        <input matInput formControlName="numPages" name="numPages" type="number" min="1">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput formControlName="quantity" name="quantity" type="number" min="0">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Precio</mat-label>
+                        <input matInput formControlName="price" name="price" type="number" step="0.01" min="0">
+                    </mat-form-field>
+                </div>
+            </div>
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-outline-primary">EDITAR</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()" [disabled]="!isFormValid()">Guardar</button>
+                    <span class="spacer"></span>
+                    <button type="button" class="btn btn-outline-primary" (click)="closeBookForm()">Cerrar</button>
                 </div>
             </div>
         </fieldset>
