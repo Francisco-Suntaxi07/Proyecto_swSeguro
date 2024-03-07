@@ -142,7 +142,7 @@ def crear_usuario():
         existing_user = cursor.fetchone()
 
         if existing_user:
-            return jsonify({'error': f'El ID de usuario {id} ya existe.'}), 400
+            return jsonify({'error': f'El usuario ya existe con el ID {id}.'}), 400
 
         contrasenia_cifrada = argon2.hash(contrasenia)
 
@@ -151,7 +151,7 @@ def crear_usuario():
                        (id, cedula, nombre, apellido, rol, contrasenia_cifrada, usuario, telefono, direccion, correo))
         conn.commit()
 
-        return jsonify({'mensaje': 'El ID del usuario ingresado ya existe.'}), 201
+        return jsonify({'mensaje': 'Usuario creado correctamente.'}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
