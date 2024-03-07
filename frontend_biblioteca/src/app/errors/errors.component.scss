@@ -28,7 +28,7 @@
 .back-button {
     position: absolute;
     bottom: 500px; 
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.7); 
     color: white; 
     padding: 10px 20px;
     border: none;
@@ -36,8 +36,17 @@
     cursor: pointer;
     font-family: 'Times New Roman', Times, serif; 
     font-size: 30px; 
+    animation: blink 1s infinite;
 }
 
 .back-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: none;
 }
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
