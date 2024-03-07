@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
-import { AdministratorLayoutComponent } from './administrator/administrator-layout/administrator-layout.component';
-import { StudentLayoutComponent } from './student/student-layout/student-layout.component';
+import { guardsGuard } from './security/guards.guard'
+import { ErrorsComponent } from './errors/errors.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'administrador', loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule) },
-  { path: 'estudiante', loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
-  { path: '**', loadComponent: () => import('./errors/errors.component').then(comp => comp.ErrorsComponent) }
+  { path: 'admin', canMatch: [guardsGuard], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'administrador', canMatch: [guardsGuard], loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule) },
+  { path: 'estudiante', canMatch: [guardsGuard], loadChildren: () => import('./student/student.module').then(m => m.StudentModule) },
+  { path: "**", component: ErrorsComponent }
 ];
 
 @NgModule({

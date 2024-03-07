@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { UsersModel } from '../models/usersModel';
 import { map } from 'rxjs/operators';
 
@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class UsersService {
 
+  private _aux: boolean = false;
   private urlEndPoint: string = 'http://127.0.0.1:5000';
   private adminToken: string = 'secreto_admin';
 
@@ -38,15 +39,17 @@ export class UsersService {
               apellido: response.apellido,
               rol: response.rol
             };
+            this._aux=true;
             this.setUserData(userData);
           } else {
+            this._aux=false;
             console.error('La respuesta del servidor no contiene la información del usuario esperada.');
           }
           return response;
         })
       );
   }
-  
+
   public createUser(user: UsersModel): Observable<any> {
     return this.http.post<any>(`${this.urlEndPoint}/usuarios`, user);
   }
@@ -63,5 +66,10 @@ export class UsersService {
   public getAllUsers(): Observable<any> {
     return this.http.get<any>(`${this.urlEndPoint}/usuarios`);
   }
+
+  getAuthToken(): Observable<boolean> {
+    return of(this._aux);
+  }
+
 }
 

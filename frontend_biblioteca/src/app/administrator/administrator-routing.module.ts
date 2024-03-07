@@ -7,9 +7,10 @@ import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BooksWarningComponent } from './books/books-warning/books-warning.component';
 import { LoansFormComponent } from './loans/loans-form/loans-form.component';
 import { LoansWarningComponent } from './loans/loans-warning/loans-warning.component';
+import { guardsGuard } from '../security/guards.guard';
 
 const routes: Routes = [
-  { path: '', component: AdministratorLayoutComponent },
+  { path: '', canMatch: [guardsGuard], component: AdministratorLayoutComponent },
   { path: 'books', component: BooksComponent },
   { path: 'books/form', component: BooksFormComponent },
   { path: 'books/warning', component: BooksWarningComponent },
