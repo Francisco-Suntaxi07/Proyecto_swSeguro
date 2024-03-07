@@ -1,0 +1,50 @@
+.login_bg {
+    position: relative;
+    background-color: #D1B280;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.close_btn {
+    position: absolute;
+    top: 1px; 
+    right: 1px;
+    background-color: #594d46; 
+    color: white !important; 
+    border: none;
+    height: 22px; 
+    font-size: 16px;
+}
+
+
+.btn {
+    border-radius: 90px;
+    background-color: #D1B280;
+    color: #ffffff;
+    border: none;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #f3c986; 
+    border: none;
+}
+
+
+.error-snackbar {
+    background-color: #e53935; 
+    color: white;
+  }
+  
+  
+  .success-snackbar {
+    background-color: #43a047; 
+    color: white;
+  }
+  

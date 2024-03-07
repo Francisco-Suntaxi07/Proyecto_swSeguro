@@ -1,0 +1,68 @@
+<div class="container">
+    <form [formGroup]="formSearch">
+      <div class="form-group">
+        <label for="id">Buscar por ID:</label>
+        <input type="text" id="id" formControlName="id" class="form-control">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="buscar()">Buscar</button>
+    </form>
+  
+    <div *ngIf="usuarioEncontrado">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ usuarioEncontrado.id }}</td>
+            <td>{{ usuarioEncontrado.nombre }}</td>
+            <td>{{ usuarioEncontrado.apellido }}</td>
+            <td>{{ usuarioEncontrado.cedula }}</td>
+            <td>{{ usuarioEncontrado.correo }}</td>
+            <td>{{ usuarioEncontrado.rol }}</td>
+            <td>{{ usuarioEncontrado.telefono }}</td>
+            <td>{{ usuarioEncontrado.direccion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="!usuarioEncontrado">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.cedula }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>{{ usuario.rol }}</td>
+            <td>{{ usuario.telefono }}</td>
+            <td>{{ usuario.direccion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
