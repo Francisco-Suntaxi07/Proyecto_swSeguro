@@ -9,20 +9,31 @@ import { map } from 'rxjs/operators';
 })
 export class UsersService {
 
-  private _aux: boolean = false;
   private urlEndPoint: string = 'http://127.0.0.1:5000';
   private adminToken: string = 'secreto_admin';
 
   private userDataSubject: BehaviorSubject<{ id: string, nombre: string, apellido: string, rol: string } | null> =
     new BehaviorSubject<{ id: string, nombre: string, apellido: string, rol: string } | null>(null);
 
-  constructor(private http: HttpClient) { }
+  public clearUserData(): void {
+    localStorage.removeItem('userData'); 
+    this.userDataSubject.next(null); 
+  }
+
+  constructor(private http: HttpClient) {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      this.userDataSubject.next(userData);
+    }
+  }
 
   public getUserDataObservable(): Observable<{ id: string, nombre: string, apellido: string, rol: string } | null> {
     return this.userDataSubject.asObservable();
   }
 
   private setUserData(userData: { id: string, nombre: string, apellido: string, rol: string }): void {
+    localStorage.setItem('userData', JSON.stringify(userData));
     this.userDataSubject.next(userData);
   }
 
@@ -39,10 +50,8 @@ export class UsersService {
               apellido: response.apellido,
               rol: response.rol
             };
-            this._aux=true;
             this.setUserData(userData);
           } else {
-            this._aux=false;
             console.error('La respuesta del servidor no contiene la información del usuario esperada.');
           }
           return response;
@@ -68,7 +77,9 @@ export class UsersService {
   }
 
   getAuthToken(): Observable<boolean> {
-    return of(this._aux);
+    return this.userDataSubject.pipe(
+      map(userData => userData !== null)
+    );
   }
 
 }

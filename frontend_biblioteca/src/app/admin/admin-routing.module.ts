@@ -4,12 +4,13 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { UsersDeleteComponent } from './users-delete/users-delete.component';
 import { UsersFormsComponent } from './users-forms/users-forms.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { guardsGuard } from '../security/guards.guard';
 
 const routes: Routes = [
-  { path: '', component:AdminLayoutComponent },
-  { path: 'users/delete', component:UsersDeleteComponent },
-  { path: 'users/forms', component:UsersFormsComponent },
-  { path: 'users/list', component:UsersListComponent }
+  { path: '', canMatch: [guardsGuard], component: AdminLayoutComponent },
+  { path: 'users/delete', canMatch: [guardsGuard], component: UsersDeleteComponent },
+  { path: 'users/forms', canMatch: [guardsGuard], component: UsersFormsComponent },
+  { path: 'users/list', canMatch: [guardsGuard], component: UsersListComponent }
 ];
 
 @NgModule({

@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { LoansViewComponent } from './loans-view/loans-view.component';
+import { guardsGuard } from '../security/guards.guard';
 
 const routes: Routes = [
-  { path: '', component: StudentLayoutComponent },
-  { path: 'loans-view', component: LoansViewComponent }
+  { path: '', canMatch: [guardsGuard], component: StudentLayoutComponent },
+  { path: 'loans-view', canMatch: [guardsGuard], component: LoansViewComponent }
 ];
 
 @NgModule({

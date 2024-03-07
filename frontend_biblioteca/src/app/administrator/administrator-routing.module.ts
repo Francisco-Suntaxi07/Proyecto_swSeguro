@@ -11,12 +11,12 @@ import { guardsGuard } from '../security/guards.guard';
 
 const routes: Routes = [
   { path: '', canMatch: [guardsGuard], component: AdministratorLayoutComponent },
-  { path: 'books', component: BooksComponent },
-  { path: 'books/form', component: BooksFormComponent },
-  { path: 'books/warning', component: BooksWarningComponent },
-  { path: 'loans', component: LoansComponent },
-  { path: 'loans/form', component: LoansFormComponent },
-  { path: 'loans/warning', component: LoansWarningComponent }
+  { path: 'books', canMatch: [guardsGuard], component: BooksComponent },
+  { path: 'books/form', canMatch: [guardsGuard], component: BooksFormComponent },
+  { path: 'books/warning', canMatch: [guardsGuard], component: BooksWarningComponent },
+  { path: 'loans', canMatch: [guardsGuard], component: LoansComponent },
+  { path: 'loans/form', canMatch: [guardsGuard], component: LoansFormComponent },
+  { path: 'loans/warning', canMatch: [guardsGuard], component: LoansWarningComponent }
 ];
 
 @NgModule({
