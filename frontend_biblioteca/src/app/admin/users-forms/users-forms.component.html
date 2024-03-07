@@ -9,20 +9,21 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id" required>
+                        <mat-label>ID (ejm L02)</mat-label>
+                        <input matInput formControlName="id" name="id" maxlength="5" required (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Nombre</mat-label>
-                        <input matInput formControlName="nombre" name="nombre" pattern="[a-zA-Z ]*" maxlength="32" required>
+                        <input matInput formControlName="nombre" name="nombre" maxlength="32" required (keypress)="validarTecla($event)">
                     </mat-form-field>
                 </div>
+                
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Apellido</mat-label>
-                        <input matInput formControlName="apellido" name="apellido" pattern="[a-zA-Z ]*" maxlength="32" required>
+                        <input matInput formControlName="apellido" name="apellido" pattern="[a-zA-Z ]*" maxlength="32" required (keypress)="validarTecla($event)">
                     </mat-form-field>
                 </div>
             </div>
@@ -31,9 +32,10 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Cedula</mat-label>
-                        <input matInput formControlName="cedula" name="cedula" pattern="[0-9]*" required>
+                        <input matInput formControlName="cedula" name="cedula" pattern="[0-9]*" maxlength="10" required (keypress)="deshabilitarLetras($event)">
                     </mat-form-field>
                 </div>
+                
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Rol</mat-label>
@@ -42,21 +44,20 @@
                             <mat-option value="administrador">Administrador</mat-option>
                         </mat-select>
                     </mat-form-field>
-                </div>
-                
+                </div>      
             </div>
 
             <div class="row">
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Usuario</mat-label>
-                        <input matInput formControlName="usuario" name="usuario" pattern="[a-zA-Z0-9]*" maxlength="100" required>
+                        <input matInput formControlName="usuario" name="usuario" pattern="[a-zA-Z0-9]*" maxlength="16" required (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field>
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput [type]="_hide ? 'password' : 'text'" formControlName="contrasenia" name="contrasenia" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                        <mat-label>Contraseña (8-16)</mat-label>
+                        <input matInput [type]="_hide ? 'password' : 'text'" formControlName="contrasenia" maxlength="16" name="contrasenia" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$" required>
                     </mat-form-field>
                 </div>
             </div>
@@ -65,13 +66,13 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Correo</mat-label>
-                        <input matInput formControlName="correo" name="correo" type="email" required>
+                        <input matInput formControlName="correo" name="correo" type="email" maxlength="32" required>
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Telefono</mat-label>
-                        <input matInput formControlName="telefono" name="telefono" pattern="[0-9]*" required>
+                        <input matInput formControlName="telefono" name="telefono" pattern="[0-9]*" required (keypress)="deshabilitarLetras($event)">
                     </mat-form-field>
                 </div>
             </div>
@@ -80,14 +81,15 @@
                 <div class="col">
                     <mat-form-field>
                         <mat-label>Dirección</mat-label>
-                        <textarea matInput formControlName="direccion" name="direccion" maxlength="255"></textarea>
+                        <textarea matInput formControlName="direccion" name="direccion" maxlength="64" (keypress)="deshabilitarSimbolos($event)" ></textarea>
                     </mat-form-field>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Registrar</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()"
+                    [disabled]="!isFormValid()">Registrar</button>
                 </div>
             </div>
         </fieldset>

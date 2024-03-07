@@ -27,12 +27,12 @@ export class UsersFormsComponent {
 
   initializeForm() {
     this.formLogin = this.fb.group({
-      id: ['', Validators.required],
-      nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(100)]],
-      apellido: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(100)]],
-      cedula: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      id: ['', [Validators.required, Validators.pattern(/^[A-Z0-9]*$/)]], 
+      nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(32)]],
+      apellido: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(32)]],
+      cedula: ['', [Validators.required, Validators.maxLength(10),Validators.pattern('[0-9]*')]],
       rol: ['', Validators.required],
-      usuario: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*'), Validators.maxLength(100)]],
+      usuario: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*'), Validators.maxLength(32)]],
       contrasenia: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
       correo: ['', [Validators.required, Validators.email]], 
       telefono: ['', [Validators.required, Validators.pattern('[0-9]*')]],
@@ -79,4 +79,32 @@ export class UsersFormsComponent {
   closeSignIn(): void {
     this.dialogRef.close();
   }
+
+  isFormValid(): boolean {
+    return this.formLogin.valid;
+  }
+  validarTecla(event: KeyboardEvent) {
+    const inputChar = String.fromCharCode(event.charCode);
+    const pattern = /[A-Za-z\s]/;
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  deshabilitarSimbolos(event: KeyboardEvent) {
+    const charCode = event.which || event.keyCode;
+    const specialChars = [33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 95, 43, 61, 91, 93, 123, 125, 92, 124, 59, 58, 34, 39, 60, 62, 47, 63];
+    if (specialChars.includes(charCode)) {
+        event.preventDefault();
+    }
+}
+
+deshabilitarLetras(event: KeyboardEvent) {
+  const charCode = event.which || event.keyCode;
+  const validChars = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+  if (!validChars.includes(charCode)) {
+      event.preventDefault();
+  }
+}
+
 }
