@@ -12,10 +12,10 @@ app.config['SECRET_KEY'] = 'mi_secreto_super_seguro'
 CORS(app)
 # Configuración de la base de datos
 db_config = {
-    'Server': 'DESKTOP-GAMNA9H',
+    'Server': 'DESKTOP-CAJEOTU',
     'Database': 'Proyectos_7',
     'UID': 'sa',
-    'PWD': 'admin1',
+    'PWD': '12345',
     'Port': '1433',
     'Driver': '{ODBC Driver 17 for SQL Server}'
 }
@@ -190,6 +190,8 @@ def actualizar_usuario(id):
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+from flask import jsonify
+
 @app.route('/usuarios/verificar', methods=['POST'])
 def verificar_usuario():
     try:
@@ -197,16 +199,24 @@ def verificar_usuario():
         id = data['id']
         contrasenia_ingresada = data['contrasenia']
 
-        cursor.execute("SELECT usuario, contrasenia, rol FROM usuarios WHERE id=?", (id,))
+        cursor.execute("SELECT id, nombre, apellido, contrasenia, rol FROM usuarios WHERE id=?", (id,))
         usuario_info = cursor.fetchone()
 
         if usuario_info:
-            usuario_cifrado_almacenado = usuario_info[0]
-            contrasenia_cifrada_almacenada = usuario_info[1]
-            rol_usuario = usuario_info[2]
+            id_usuario = usuario_info[0]
+            nombre_usuario = usuario_info[1]
+            apellido_usuario = usuario_info[2]
+            contrasenia_cifrada_almacenada = usuario_info[3]
+            rol_usuario = usuario_info[4]
 
             if argon2.verify(contrasenia_ingresada, contrasenia_cifrada_almacenada):
-                return jsonify({'mensaje': 'Contraseña correcta', 'rol': rol_usuario}), 200
+                return jsonify({
+                    'mensaje': 'Contraseña correcta',
+                    'id': id_usuario,
+                    'nombre': nombre_usuario,
+                    'apellido': apellido_usuario,
+                    'rol': rol_usuario
+                }), 200
             else:
                 return jsonify({'mensaje': 'Contraseña incorrecta'}), 401
         else:
