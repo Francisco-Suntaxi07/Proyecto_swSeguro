@@ -1,22 +1,23 @@
 from flask import Flask, request, jsonify
-import mysql.connector
 from passlib.hash import argon2
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, Length, Regexp
+from wtforms.validators import InputRequired
+from flask_cors import CORS
+from wtforms.fields import StringField
 import pyodbc
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mi_secreto_super_seguro'
-
+CORS(app)
 # Configuración de la base de datos
 db_config = {
-    'Server': 'DESKTOP-GAMNA9H\SQLEXPRESS',
+    'Server': 'DESKTOP-CAJEOTU',
     'Database': 'Proyectos_7',
     'UID': 'sa',
-    'PWD': 'admin1',
+    'PWD': '12345',
     'Port': '1433',
-    'Driver': '{ODBC Driver 17 for SQL Server}'  # Asegúrate de tener el controlador ODBC adecuado instalado
+    'Driver': '{ODBC Driver 17 for SQL Server}'
 }
 
 # Conexión a la base de datos
@@ -24,6 +25,7 @@ conn = pyodbc.connect(**db_config)
 cursor = conn.cursor()
 
 class CrearUsuarioForm(FlaskForm):
+    # Tu clase CrearUsuarioForm sigue igual
     id = StringField('ID', validators=[InputRequired()])
     cedula = StringField('Cedula', validators=[InputRequired()])
     nombre = StringField('Nombre', validators=[InputRequired()])
@@ -33,11 +35,14 @@ class CrearUsuarioForm(FlaskForm):
     usuario = StringField('Usuario', validators=[InputRequired()])
     telefono = StringField('Telefono', validators=[InputRequired()])
     direccion = StringField('Direccion', validators=[InputRequired()])
+    correo = StringField('Correo', validators=[InputRequired()])
+ADMIN_SECRET_KEY = "secreto_admin"
+from flask import jsonify
 
 @app.route('/usuarios', methods=['GET'])
 def obtener_usuarios():
     try:
-        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios")
+        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion, correo FROM usuarios")
         usuarios = cursor.fetchall()
 
         usuarios_json = []
@@ -51,7 +56,8 @@ def obtener_usuarios():
                 'contrasenia': usuario[5],
                 'usuario': usuario[6],
                 'telefono': usuario[7],
-                'direccion': usuario[8]
+                'direccion': usuario[8],
+                'correo': usuario[9]  # Agregamos el campo de correo a la respuesta
             }
             usuarios_json.append(usuario_dict)
 
@@ -60,17 +66,16 @@ def obtener_usuarios():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-ADMIN_SECRET_KEY = "secreto_admin"
+
+from flask import jsonify
+
 @app.route('/usuarios/<id>', methods=['GET'])
 def obtener_usuario_por_id(id):
     try:
-        # Busca el usuario por ID en la base de datos
-        #cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=%s", (id,))
-        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion FROM usuarios WHERE id=?", (id,))
+        cursor.execute("SELECT id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion, correo FROM usuarios WHERE id=?", (id,))
         usuario = cursor.fetchone()
 
         if usuario:
-            # Convierte el resultado a un formato JSON
             usuario_dict = {
                 'id': usuario[0],
                 'cedula': usuario[1],
@@ -80,7 +85,8 @@ def obtener_usuario_por_id(id):
                 'contrasenia': usuario[5],
                 'usuario': usuario[6],
                 'telefono': usuario[7],
-                'direccion': usuario[8]
+                'direccion': usuario[8],
+                'correo': usuario[9]
             }
 
             return jsonify({'usuario': usuario_dict}), 200
@@ -89,13 +95,17 @@ def obtener_usuario_por_id(id):
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+# ...
+
 @app.route('/usuarios/<id>', methods=['DELETE'])
 def eliminar_usuario(id):
     try:
         admin_token = request.headers.get('Admin-Token')
 
         if admin_token == ADMIN_SECRET_KEY:
-            cursor.execute("DELETE FROM usuarios WHERE id=%s", (id,))
+            cursor.execute("DELETE FROM usuarios WHERE id=?", (id,))
             conn.commit()
 
             return jsonify({'mensaje': 'Usuario eliminado correctamente'}), 200
@@ -105,23 +115,17 @@ def eliminar_usuario(id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-class ActualizarUsuarioForm(FlaskForm):
-    usuario = StringField('Usuario', validators=[InputRequired()])
-    contrasenia = PasswordField('Contraseña', validators=[
-        InputRequired()])
-    correo = StringField('Correo', validators=[InputRequired()])
-    nombre = StringField('Nombre', validators=[InputRequired()])
-    apellido = StringField('Apellido', validators=[InputRequired()])
-    rol = StringField('Rol', validators=[InputRequired()])
-    telefono = StringField('Telefono', validators=[InputRequired()])
-    direccion = StringField('Direccion', validators=[InputRequired()])
+# ...
+
+from flask import request, jsonify
+from argon2 import PasswordHasher
+
 
 @app.route('/usuarios', methods=['POST'])
 def crear_usuario():
     try:
         data = request.get_json()
 
-        
         id = data.get('id')
         cedula = data.get('cedula')
         nombre = data.get('nombre')
@@ -131,17 +135,28 @@ def crear_usuario():
         usuario = data.get('usuario')
         telefono = data.get('telefono')
         direccion = data.get('direccion')
+        correo = data.get('correo')
+
+        # Verificar si ya existe un usuario con el mismo ID
+        cursor.execute("SELECT * FROM usuarios WHERE id = ?", (id,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            return jsonify({'error': f'El ID de usuario {id} ya existe.'}), 400
 
         contrasenia_cifrada = argon2.hash(contrasenia)
 
-        cursor.execute("INSERT INTO usuarios (id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                       (id, cedula, nombre, apellido, rol, contrasenia_cifrada, usuario, telefono, direccion))
+        # Si no hay un usuario con el mismo ID, proceder con la inserción
+        cursor.execute("INSERT INTO usuarios (id, cedula, nombre, apellido, rol, contrasenia, usuario, telefono, direccion, correo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                       (id, cedula, nombre, apellido, rol, contrasenia_cifrada, usuario, telefono, direccion, correo))
         conn.commit()
 
-        return jsonify({'mensaje': 'Usuario creado correctamente'}), 201
+        return jsonify({'mensaje': 'El ID del usuario ingresado ya existe.'}), 201
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
 @app.route('/usuarios/<id>', methods=['PUT'])
 def actualizar_usuario(id):
     try:
@@ -152,22 +167,20 @@ def actualizar_usuario(id):
 
             usuario = data.get('usuario')
             contrasenia = data.get('contrasenia')
-            correo = data.get('correo')
+            
             nombre = data.get('nombre')
             apellido = data.get('apellido')
             rol = data.get('rol')
             telefono = data.get('telefono')
             direccion = data.get('direccion')
 
-          
             if contrasenia:
                 contrasenia_cifrada = argon2.hash(contrasenia)
-                cursor.execute("UPDATE usuarios SET usuario=%s, contrasenia=%s, correo=%s, nombre=%s, apellido=%s, rol=%s, telefono=%s, direccion=%s WHERE id=%s",
-                               (usuario, contrasenia_cifrada, correo, nombre, apellido, rol, telefono, direccion, id))
+                cursor.execute("UPDATE usuarios SET usuario=?, contrasenia=?, nombre=?, apellido=?, rol=?, telefono=?, direccion=? WHERE id=?",
+                               (usuario, contrasenia_cifrada, nombre, apellido, rol, telefono, direccion, id))
             else:
-              
-                cursor.execute("UPDATE usuarios SET usuario=%s, correo=%s, nombre=%s, apellido=%s, rol=%s, telefono=%s, direccion=%s WHERE id=%s",
-                               (usuario, correo, nombre, apellido, rol, telefono, direccion, id))
+                cursor.execute("UPDATE usuarios SET usuario=?, nombre=?, apellido=?, rol=?, telefono=?, direccion=? WHERE id=?",
+                               (usuario, nombre, apellido, rol, telefono, direccion, id))
 
             conn.commit()
 
@@ -177,8 +190,6 @@ def actualizar_usuario(id):
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-
 @app.route('/usuarios/verificar', methods=['POST'])
 def verificar_usuario():
     try:
@@ -186,15 +197,16 @@ def verificar_usuario():
         id = data['id']
         contrasenia_ingresada = data['contrasenia']
 
-        cursor.execute("SELECT usuario, contrasenia FROM usuarios WHERE id=%s", (id,))
+        cursor.execute("SELECT usuario, contrasenia, rol FROM usuarios WHERE id=?", (id,))
         usuario_info = cursor.fetchone()
 
         if usuario_info:
             usuario_cifrado_almacenado = usuario_info[0]
             contrasenia_cifrada_almacenada = usuario_info[1]
+            rol_usuario = usuario_info[2]
 
             if argon2.verify(contrasenia_ingresada, contrasenia_cifrada_almacenada):
-                return jsonify({'mensaje': 'Contraseña correcta'}), 200
+                return jsonify({'mensaje': 'Contraseña correcta', 'rol': rol_usuario}), 200
             else:
                 return jsonify({'mensaje': 'Contraseña incorrecta'}), 401
         else:
@@ -203,7 +215,7 @@ def verificar_usuario():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-SECRET_KEY = "mi_secreto_super_seguro"
+# Resto del código sigue igual...
 
 if __name__ == '__main__':
     app.run(debug=True)

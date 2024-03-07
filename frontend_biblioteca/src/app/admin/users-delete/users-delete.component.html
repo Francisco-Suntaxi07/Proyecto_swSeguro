@@ -1,0 +1,51 @@
+<div class="login_bg">
+    <h1 mat-dialog-title class="title">Búsqueda</h1>
+    <button class="close_btn" mat-stroked-button (click)="closeSearch()">X</button>
+</div>
+
+<div mat-dialog-content>
+    <form [formGroup]="formSearch">
+        <fieldset>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="id" name="id" required>
+                    </mat-form-field>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-outline-primary" (click)="buscar()">Buscar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div *ngIf="usuarioEncontrado">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Cedula</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>{{ usuarioEncontrado.id }}</td>
+                <td>{{ usuarioEncontrado.nombre }}</td>
+                <td>{{ usuarioEncontrado.apellido }}</td>
+                <td>{{ usuarioEncontrado.cedula }}</td>
+                <td>{{ usuarioEncontrado.rol }}</td>
+                <button type="button" class="btn btn-danger" (click)="eliminar(usuarioEncontrado.id)">Eliminar</button>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="mensajeError" class="error-message">
+        {{ mensajeError }}
+    </div>
+</div>

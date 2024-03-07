@@ -1,0 +1,94 @@
+<div class="login_bg">
+    <h1 mat-dialog-title class="title">Registro</h1>
+    <button class="close_btn" mat-stroked-button (click)="closeSignIn()">X</button>
+</div>
+
+<div mat-dialog-content>
+    <form [formGroup]="formLogin">
+        <fieldset>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="id" name="id" required>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" name="nombre" pattern="[a-zA-Z ]*" maxlength="100" required>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="apellido" name="apellido" pattern="[a-zA-Z ]*" maxlength="100" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Cedula</mat-label>
+                        <input matInput formControlName="cedula" name="cedula" pattern="[0-9]*" required>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Rol</mat-label>
+                        <input matInput formControlName="rol" name="rol" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Usuario</mat-label>
+                        <input matInput formControlName="usuario" name="usuario" pattern="[a-zA-Z0-9]*" maxlength="100" required>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="_hide ? 'password' : 'text'" formControlName="contrasenia" name="contrasenia" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Correo</mat-label>
+                        <input matInput formControlName="correo" name="correo" type="email" required>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="telefono" name="telefono" pattern="[0-9]*" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Dirección</mat-label>
+                        <textarea matInput formControlName="direccion" name="direccion" maxlength="255"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()">Registrar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div *ngIf="mensajeError" class="error-message">
+        {{ mensajeError }}
+    </div>
+</div>
