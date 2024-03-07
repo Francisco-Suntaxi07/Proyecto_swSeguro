@@ -9,20 +9,20 @@
                 <div class="col">
                     <mat-form-field class="id-text" appearance="outline">
                         <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id">
+                        <input matInput formControlName="id" name="id" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
 
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Titulo</mat-label>
-                        <input matInput formControlName="title" name="title" maxlength="32">
+                        <input matInput formControlName="title" name="title" maxlength="32" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Autor</mat-label>
-                        <input matInput formControlName="author" name="author" maxlength="32">
+                        <input matInput formControlName="author" name="author" maxlength="32" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
             </div>
@@ -30,20 +30,20 @@
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Genero</mat-label>
-                        <input matInput formControlName="genre" name="genre" maxlength="16">
+                        <input matInput formControlName="genre" name="genre" maxlength="16" (keypress)="deshabilitarSimbolosYNumeros($event)">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Editorial</mat-label>
-                        <input matInput formControlName="publisher" name="publisher" maxlength="24">
+                        <input matInput formControlName="publisher" name="publisher" maxlength="24" (keypress)="deshabilitarSimbolos($event)">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de Publicacion</mat-label>
                         <input matInput formControlName="publicationDate" name="publicationDate"
-                            [matDatepicker]="picker" [max]="maxDate" maxlength="10">
+                            [matDatepicker]="picker" [max]="maxDate" maxlength="10" (keypress)="deshabilitarLetrasYSimbolos($event)">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
