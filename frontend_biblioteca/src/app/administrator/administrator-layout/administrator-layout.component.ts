@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BooksFormComponent } from '../books/books-form/books-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoansFormComponent } from '../loans/loans-form/loans-form.component';
 
 @Component({
   selector: 'app-administrator-layout',
@@ -26,11 +27,19 @@ export class AdministratorLayoutComponent {
     this.displayBooks = false;
   }
 
-  openForm(): void {
+  openFormBooks(): void {
     const dialogRef = this.dialog.open(BooksFormComponent);
     dialogRef.afterClosed().subscribe(() => {
       location.reload();
     });
   }
+
+  openFormLoans() {
+    const dialogRef = this.dialog.open(LoansFormComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      location.reload();
+    });
+  }
+
 }
 

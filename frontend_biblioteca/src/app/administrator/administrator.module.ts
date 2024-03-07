@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoansFormComponent } from './loans/loans-form/loans-form.component';
+import { LoansWarningComponent } from './loans/loans-warning/loans-warning.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     BooksComponent,
     LoansComponent,
     BooksFormComponent,
-    BooksWarningComponent
+    BooksWarningComponent,
+    LoansFormComponent,
+    LoansWarningComponent
   ],
   imports: [
     CommonModule,
