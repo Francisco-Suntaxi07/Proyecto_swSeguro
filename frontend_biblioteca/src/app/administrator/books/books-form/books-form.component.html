@@ -1,14 +1,14 @@
 <div class="login_bg">
-    <h1 mat-dialog-title class="title">Libro</h1>
+    <h1 mat-dialog-title class="title">EDITAR LIBRO</h1>
 </div>
 <div mat-dialog-content>
     <form [formGroup]="formBook">
         <fieldset>
             <div class="row">
-                <div class="col">
-                    <mat-form-field appearance="outline">
+                <div class="col" >
+                    <mat-form-field class="id-text" appearance="outline">
                         <mat-label>ID</mat-label>
-                        <input matInput formControlName="id" name="id">
+                        <input matInput formControlName="id" name="id" >
                     </mat-form-field>
                 </div>
             </div>
@@ -16,62 +16,51 @@
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Titulo</mat-label>
-                        <input matInput formControlName="title" name="title">
+                        <input matInput formControlName="title" name="title" maxlength="32">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Autor</mat-label>
-                        <input matInput formControlName="author" name="author">
+                        <input matInput formControlName="author" name="author" maxlength="32">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Genero</mat-label>
-                        <input matInput formControlName="genre" name="genre">
+                        <input matInput formControlName="genre" name="genre" maxlength="16">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Editorial</mat-label>
-                        <input matInput formControlName="publisher" name="publisher">
+                        <input matInput formControlName="publisher" name="publisher" maxlength="24">
                     </mat-form-field>
                 </div>
-            </div>
+            </div>  
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de Publicacion</mat-label>
                         <input matInput formControlName="publicationDate" name="publicationDate"
-                            [matDatepicker]="picker" [max]="maxDate">
+                            [matDatepicker]="picker" [max]="maxDate" maxlength="10">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Numero de paginas</mat-label>
                         <input matInput formControlName="numPages" name="numPages" type="number" min="1">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Cantidad</mat-label>
                         <input matInput formControlName="quantity" name="quantity" type="number" min="0">
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="col">
                     <mat-form-field appearance="outline">
                         <mat-label>Precio</mat-label>

@@ -17,12 +17,12 @@ export class BooksFormComponent implements OnInit {
 
   private _formBook: FormGroup = this._formBuilder.group({
     id: ['', Validators.required],
-    title: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
-    author: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
-    genre: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
-    publisher: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[^<>]*$/)]],
+    title: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[\w\sáéíóúÁÉÍÓÚ]*$/)]],
+    author: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[\w\sáéíóúÁÉÍÓÚ&]*$/)]],
+    genre: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[\w\sáéíóúÁÉÍÓÚ]*$/)]],
+    publisher: ['', [Validators.required, Validators.maxLength(32), Validators.pattern(/^[\w\sáéíóúÁÉÍÓÚ&]*$/)]],
     publicationDate: [null, Validators.required],
-    numPages: [null, [Validators.required, Validators.pattern("^[1-9]*$")]],
+    numPages: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
     quantity: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
     price: [null, [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]]
   });
