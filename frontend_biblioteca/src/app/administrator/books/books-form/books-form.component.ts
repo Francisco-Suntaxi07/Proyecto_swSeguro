@@ -27,7 +27,6 @@ export class BooksFormComponent implements OnInit {
     price: [null, [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]]
   });
   
-
   constructor(
     public dialogRef: MatDialogRef<BooksFormComponent>,
     private _formBuilder: FormBuilder,

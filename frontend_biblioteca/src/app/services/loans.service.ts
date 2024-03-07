@@ -33,7 +33,7 @@ export class LoansService {
     return this.http.post<any>(`${this.urlEndPoint}/save`, loan, { headers });
   }
 
-  delete(id: string): Observable<any> {
+  delete(id?: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin:admin')
     });

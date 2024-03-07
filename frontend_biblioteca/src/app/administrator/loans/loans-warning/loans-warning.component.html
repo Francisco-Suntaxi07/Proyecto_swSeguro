@@ -1,1 +1,10 @@
-<p>loans-warning works!</p>
+<h1 mat-dialog-title>Eliminar Prestamo</h1>
+<div mat-dialog-content>
+    <p>Esta seguro que desea eliminar el prestamo de ID: "{{loan.id}}"?</p>
+</div>
+<mat-dialog-actions align="center">
+    <button class="btn btn-warning" (click)="deleteLoan()">Si</button>
+    <span class="spacer"></span>
+    <button class="btn btn-danger" (click)="closeLoanWarning()">Cerrar</button>&nbsp;
+
+</mat-dialog-actions>

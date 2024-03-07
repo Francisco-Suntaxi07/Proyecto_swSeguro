@@ -31,9 +31,9 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
-                        <mat-label>Fecha de Publicacion</mat-label>
-                        <input matInput formControlName="loanDate" name="loanDate"
-                            [matDatepicker]="loanPicker">
+                        <mat-label>Fecha de Prestamo</mat-label>
+                        <input matInput formControlName="loanDate" name="loanDate" 
+                        [matDatepicker]="loanPicker" [min]="minDate" (dateChange)="updateMinReturnDate($event)">
                         <mat-datepicker-toggle matSuffix [for]="loanPicker"></mat-datepicker-toggle>
                         <mat-datepicker #loanPicker></mat-datepicker>
                     </mat-form-field>
@@ -42,9 +42,9 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field appearance="outline">
-                        <mat-label>Fecha de Publicacion</mat-label>
-                        <input matInput formControlName="returnDate" name="returnDate"
-                            [matDatepicker]="returnPicker">
+                        <mat-label>Fecha de Devolucion</mat-label>
+                        <input matInput formControlName="returnDate" name="returnDate" 
+                        [matDatepicker]="returnPicker" [min]="minDateReturn">
                         <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
                         <mat-datepicker #returnPicker></mat-datepicker>
                     </mat-form-field>
@@ -76,9 +76,10 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <!-- <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()" [disabled]="!isFormValid()">Guardar</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()"
+                        [disabled]="!isFormValid()">Guardar</button>
                     <span class="spacer"></span>
-                    <button type="button" class="btn btn-outline-primary" (click)="closeBookForm()">Cerrar</button>  -->
+                    <button type="button" class="btn btn-outline-primary" (click)="closeLoanForm()">Cerrar</button>
                 </div>
             </div>
         </fieldset>
