@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class StudentLayoutComponent {
 
+  displayLoans: boolean = false;
+
+  goToLoans() {
+    this.displayLoans = true;
+  }
+
 }

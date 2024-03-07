@@ -7,9 +7,17 @@
                     <h1 class="titulo-nombre">BIENVENIDO XPERSONA </h1>
                     <h4>¿Qué deseas realizar hoy?</h4>
                     <div class="elementos_sep mt-3">
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2">PRESTAMOS</button>
-                        <button class="btn btn-primary py-md-3 px-md-5 mt-2">SEGUIMIENTO</button>
+                        <button class="btn btn-primary py-md-3 px-md-5 mt-2" (click)="goToLoans()">PRESTAMOS</button>
                     </div>
+                </div>
+                <div>
+                    <ng-container *ngIf="displayLoans">
+                        <div class="container-menus">
+                            <app-loans-view></app-loans-view>
+                        </div>
+                        <br>
+                        <button class="btn-cerrar" (click)="displayLoans = false">Cerrar tabla</button>
+                    </ng-container>
                 </div>
             </div>
         </div>

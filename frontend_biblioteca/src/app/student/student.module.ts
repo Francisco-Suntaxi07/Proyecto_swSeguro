@@ -5,6 +5,8 @@ import { StudentRoutingModule } from './student-routing.module';
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoansViewComponent } from './loans-view/loans-view.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { LoansViewComponent } from './loans-view/loans-view.component';
   imports: [
     CommonModule,
     StudentRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
   ]
 })
 export class StudentModule { }
