@@ -32,11 +32,12 @@ export class BooksComponent implements OnInit{
     });
   }
 
-  openEdit(book: BookModel): void {
+  openForm(book: BookModel): void {
     const dialogRef = this.dialog.open(BooksFormComponent, {
       data: book
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
+      location.reload();
     });
   }
 
@@ -44,7 +45,8 @@ export class BooksComponent implements OnInit{
     const dialogRef = this.dialog.open(BooksWarningComponent, {
       data: book 
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe( () => {
+      location.reload();
     });
   }
 

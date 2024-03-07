@@ -5,13 +5,17 @@ import { BooksComponent } from './books/books.component';
 import { LoansComponent } from './loans/loans.component';
 import { BooksFormComponent } from './books/books-form/books-form.component';
 import { BooksWarningComponent } from './books/books-warning/books-warning.component';
+import { LoansFormComponent } from './loans/loans-form/loans-form.component';
+import { LoansWarningComponent } from './loans/loans-warning/loans-warning.component';
 
 const routes: Routes = [
-  { path: '', component:AdministratorLayoutComponent },
-  { path: 'books', component: BooksComponent},
-  { path: 'books/form', component: BooksFormComponent},
-  { path: 'books/warning', component: BooksWarningComponent},
-  { path: 'loans', component: LoansComponent}
+  { path: '', component: AdministratorLayoutComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'books/form', component: BooksFormComponent },
+  { path: 'books/warning', component: BooksWarningComponent },
+  { path: 'loans', component: LoansComponent },
+  { path: 'loans/form', component: LoansFormComponent },
+  { path: 'loans/warning', component: LoansWarningComponent }
 ];
 
 @NgModule({

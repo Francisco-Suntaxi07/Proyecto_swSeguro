@@ -19,7 +19,7 @@ export class BooksService {
     return this.http.get<BookModel[]>(`${this.urlEndPoint}/all`, { headers });
   }
 
-  findById(id: string): Observable<BookModel> {
+  findById(id?: string): Observable<BookModel> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('admin:admin')
     });
