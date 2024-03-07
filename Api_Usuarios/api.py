@@ -12,10 +12,10 @@ app.config['SECRET_KEY'] = 'mi_secreto_super_seguro'
 CORS(app)
 # Configuración de la base de datos
 db_config = {
-    'Server': 'DESKTOP-CAJEOTU',
+    'Server': 'DESKTOP-GAMNA9H',
     'Database': 'Proyectos_7',
     'UID': 'sa',
-    'PWD': '12345',
+    'PWD': 'admin1',
     'Port': '1433',
     'Driver': '{ODBC Driver 17 for SQL Server}'
 }

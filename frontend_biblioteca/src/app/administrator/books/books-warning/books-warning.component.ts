@@ -26,9 +26,6 @@ export class BooksWarningComponent {
     this.dialogRef.close();
   }
 
-  recargarPagina() {
-  }
-
   deleteBook() {
     this.booksService.delete(this._book.id).subscribe({
       next: () => {

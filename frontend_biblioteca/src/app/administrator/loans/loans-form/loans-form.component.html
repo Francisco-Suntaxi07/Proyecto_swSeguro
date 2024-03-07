@@ -1,1 +1,87 @@
-<p>loans-form works!</p>
+<div class="login_bg">
+    <h1 mat-dialog-title class="title">Prestamo</h1>
+</div>
+<div mat-dialog-content>
+    <form [formGroup]="formLoan">
+        <fieldset>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="id" name="id">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>ID Libro</mat-label>
+                        <input matInput formControlName="bookId" name="bookId">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>ID Estudiante</mat-label>
+                        <input matInput formControlName="customerId" name="customerId">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Prestamo</mat-label>
+                        <input matInput formControlName="loanDate" name="loanDate" 
+                        [matDatepicker]="loanPicker" [min]="minDate" (dateChange)="updateMinReturnDate($event)">
+                        <mat-datepicker-toggle matSuffix [for]="loanPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #loanPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Devolucion</mat-label>
+                        <input matInput formControlName="returnDate" name="returnDate" 
+                        [matDatepicker]="returnPicker" [min]="minDateReturn">
+                        <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #returnPicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Precio</mat-label>
+                        <input matInput formControlName="price" name="price" type="number" step="0.01" min="0">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Multa</mat-label>
+                        <input matInput formControlName="fine" name="fine" type="number" step="0.01" min="0">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Observaciones</mat-label>
+                        <textarea matInput formControlName="observations" name="observations"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-outline-primary" (click)="saveBookForm()"
+                        [disabled]="!isFormValid()">Guardar</button>
+                    <span class="spacer"></span>
+                    <button type="button" class="btn btn-outline-primary" (click)="closeLoanForm()">Cerrar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
